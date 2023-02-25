@@ -1,6 +1,6 @@
-# tampermonkey-scripts
 
-Amazon Tampermonkey Scripts
+
+#Amazon Tampermonkey Scripts
 This repository contains a set of scripts created in Tampermonkey that are used in my current job at Amazon. These scripts are intended to improve processes and make associates more productive.
 
 What are Tampermonkey Scripts?
