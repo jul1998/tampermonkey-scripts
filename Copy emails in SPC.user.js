@@ -19,23 +19,41 @@
             // Clear the interval
             clearInterval(intervalId);
 
-            alert("here")
             const root = document.querySelector('.root');
 
             function copyEmails(typeOfEmail) {
                 const rows = document.querySelectorAll('tr');
                 const uniqueEmails = new Set();
 
+
                 for (let i = 0; i < rows.length; i++) {
                     const columns = rows[i].querySelectorAll('td');
                     const typeColumnElement = columns[0];
+
 
                     if (typeColumnElement && typeColumnElement.textContent) {
                         let firstColumn = typeColumnElement.textContent.split(/[0-9]+/)[0].trim();
 
                         if (firstColumn === typeOfEmail) {
-                            let email = columns[2].textContent.split(/[0-9]+/)[1].trim();
-                            uniqueEmails.add(email);
+                            let email = columns[2].textContent.split(/[0-9]+x?\s*/)[1].trim();
+                            let strWithXand3Numbers = columns[2].textContent
+                            const hasXWith3Digits = /\dx\d{3}/.test(strWithXand3Numbers);
+                            if(!hasXWith3Digits){
+                                console.log("No x in str")
+                            }else{
+
+                                console.log(strWithXand3Numbers)
+                                let arrayWithEmailAndPhone = strWithXand3Numbers.split(/\dx\d{3}/)
+                                console.log(arrayWithEmailAndPhone)
+                                email = arrayWithEmailAndPhone[1]
+                            }
+
+                            console.log(email)
+                            if (!uniqueEmails.has(email)) {
+                                console.log(`Email is not in Set: ${email}`)
+                                uniqueEmails.add(email);
+                            }
+
                         }
                     }
                 }
